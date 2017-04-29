@@ -7,12 +7,7 @@
  */
 session_start();
 
-$servername="127.0.0.1";
-$username = "du_club";
-$password = "du_club";
-$dbname = "duclub";
-$conn = new mysqli($servername, $username, $password, $dbname);
-
+include 'database.php';
 
 $email = $_COOKIE["email"];
 $pass = $_COOKIE["pass"];
