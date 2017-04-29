@@ -7,7 +7,7 @@
  */
 
 
-$servername="http://csedu.cf/phpmyadmin/";
+$servername="127.0.0.1";
 $username = "du_club";
 $password = "du_club";
 $dbname = "duclub";
