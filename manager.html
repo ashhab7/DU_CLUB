@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Manager View</title>
+<script type="application/javascript">
+    function show_pending_orders() {
+        console.log("aise");
+        window.location = "show_pending_orders.html";
+        //window.location="manager.php"
+    }
+
+    function change_menu() {
+        window.location = "change_menu.html";
+    }
+</script>
+
+
+</head>
+<body>
+<div>
+<input type="button" id="pending" onclick="show_pending_orders()" value="Show Pending Orders">
+<input type="button" id="change_menu" onclick="change_menu()" value="Change Today's Menu">
+</div>
+</body>
+</html>
