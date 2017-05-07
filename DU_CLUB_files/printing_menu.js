@@ -24,7 +24,8 @@ $(document).ready(function() {
                     else if(Status == 2)
                         var str = "Manager";
                     $('#acinfo').append('<tr> <td>'+user_name+'</td></tr><tr><td>'+str+'</td></tr><tr><td><input type="button" value="Change Password" id="change_password"' +
-                        'onclick="change_password()" style="width: 100%"></td></tr><tr><td><input type="button" value="LOG OUT" id="logout"' +
+                        'onclick="change_password()" style="width: 100%"></td></tr><tr><td><input type="button" value="See Orders" id="see_orders"' +
+                        'onclick="see_orders()" style="width: 100%"></td></tr><tr><td><input type="button" value="LOG OUT" id="logout"' +
                         'onclick="log_out()" style="width: 100%"></td></tr>');
                 });
             }

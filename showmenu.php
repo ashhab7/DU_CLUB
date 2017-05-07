@@ -103,6 +103,7 @@
 
 
 <div id="acci_info">
+    <center>
 <div class="dropdown" style="float:right;" id="account_info">
     <button class="dropbtn">Account_Info</button>
     <div class="dropdown-content">
@@ -115,8 +116,8 @@
     </div>
 </div>
     <div id="heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>
+    </center>
 </div>
-
 
 <div>
 
@@ -130,7 +131,7 @@
                 <th>Item Number</th>
                 <th>Item Name</th>
                 <th>Cost</th>
-                <th align="right">Add Item</th>
+                <th>Add Item</th>
             </tr>
 
         </thead>
@@ -199,6 +200,82 @@
 
     </div>
 
+<p id="para"></p>
+
+    <div id="myModal_order" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="order_close">&times;</span>
+                <h2>Orders</h2>
+            </div>
+            <div class="modal-body">
+                <table class="table" id="table_orders">
+                    <thead>
+                    <tr>
+                        <th>Account Number</th>
+                        <th>Order No</th>
+                        <th>Date</th>
+                        <th>Total</th>
+                    </tr>
+                    <tbody id="tbo_orders">
+
+                    </tbody>
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+<div id="myModal_order_details" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close" id="order_details_nested_close">&times;</span>
+            <h2>Detailed Menu</h2>
+        </div>
+        <div class="modal-body" id="modal_body">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Account Number</th>
+                    <th>Order No</th>
+                    <th>Date</th>
+                    <th>Total</th>
+                </tr>
+
+                <tbody id="tbo2_order">
+
+                </tbody>
+
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>Item Number</th>
+                        <th>Item Name</th>
+                        <th>Cost</th>
+                        <th>Quantity</th>
+                        <th>Amount</th>
+                    </tr>
+
+                    </thead>
+                    <tbody id="tbo_order">
+
+                    </tbody>
+                </table>
+            </table>
+
+        </div>
+    </div>
 
 </div>
 

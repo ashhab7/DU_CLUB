@@ -24,7 +24,7 @@
 
         <script src="./DU_CLUB_files/bootstrap.js.download"></script>
 
-        <script src="./DU_CLUB_files/admin.js"></script>
+        <script type="text/javascript" src="./DU_CLUB_files/admin.js"></script>
 
 
     <style>
@@ -100,7 +100,7 @@
 
 
 </head>
-<body>
+<body background="./DU_CLUB_files/background.jpg">
 <div class="dropdown" style="float:right;" id="account_info">
     <button class="dropbtn">Account_Info</button>
     <div class="dropdown-content">
@@ -159,32 +159,35 @@
             <h2>Add Faculty</h2>
         </div>
         <div class="modal-body" id="add_faculty_modal_body">
-            <p>Please fill all the fields</p>
+            <center>
+            <h3>Please fill all the fields</h3>
+                <br>
             <form id="modal_form">
-                User_Name:<br>
-                <input type="text" id="user_name" required><br>
+                <h4>User Name</h4><br>
+                <input type="text" id="user_name" placeholder="e.g 'John'" style="width: 40%" required><br>
 
-                Email:<br>
-                <input type="Email" id="add_email" required><br>
+                <h4>Email</h4><br>
+                <input type="Email" id="add_email" placeholder="e.g 'John@something.com'" style="width: 40%" required><br>
 
-                Password:<br>
-                <input type="password" id="add_pass" required><br>
+                <h4>Password</h4><br>
+                <input type="password" id="add_pass" placeholder="something tricky" style="width: 40%" required><br>
 
-                Account_Number:<br>
-                <input type="text" id="account_number" required><br>
-
-
-                Phone_Number:<br>
-                <input type="text" id="phone_number" required><br>
+                <h4>Account Number</h4><br>
+                <input type="text" id="account_number" placeholder="e.g 'John007'" style="width: 40%" required><br>
 
 
-                Address:<br>
-                <input type="text" id="address" required><br>
+                <h4>Phone Number</h4><br>
+                <input type="text" id="phone_number" placeholder="e.g '015xxxxxxxx'" style="width: 40%" required><br>
+
+
+                <h4>Address</h4><br>
+                <input type="text" id="address" placeholder="e.g 'Fuhler Road'" style="width: 40%" required><br>
             </form>
-
+            </center>
         </div>
         <div class="modal-footer">
-            <h3><input type="submit" id="add_confirm" value="Add">
+            <h3>
+                <input type="submit" id="add_confirm" value="Add">
                 <input type="submit"  id="add_cancel" value="Cancel">
             </h3>
         </div>
@@ -194,12 +197,57 @@
 
 
 
-<div id="admin_main_part">
-    <input type="button" value="Add Faculty" id="add_faculty" onclick="add_faculty()">
-    <input type="button" value="Remove Faculty" id="rem_faculty" onclick="rem_faculty()">
+<div id="myModal_rem_faculty" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <div class="modal-header">
+            <span class="close" id="rem_faculty_close">&times;</span>
+            <h2>Remove Faculty</h2>
+        </div>
+        <div class="modal-body" id="rem_faculty_modal_body">
+            <center>
+                <h3>U sure about what u are doing???!!</h3>
+            </center>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>Department</th>
+                    <th>Total</th>
+                    <th align="right">Tap to Remove</th>
+                </tr>
+
+                </thead>
+                <tbody id="tbo_rem_faculty">
+
+                </tbody>
+            </table>
+
+
+
+        </div>
+    </div>
 
 </div>
-<div id="snackbar" align="center">...asmdnjsandsandjsand...</div>
+
+
+
+<div id="admin_main_part">
+    <input style="width: 40%" type="button" class="button" value="Add Faculty" id="add_faculty" onclick="add_faculty()">
+    <input style="width: 40%" type="button" class="button" value="Remove Faculty" id="rem_faculty" onclick="rem_faculty()">
+
+</div>
 
 </body>
 </html>
+
+
+
+
+
+<div align="center" id="item_panel">
+
+
+    <div id="snackbar" align="center">...asmdnjsandsandjsand...</div>
+</div>

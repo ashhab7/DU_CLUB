@@ -217,4 +217,56 @@ function add_faculty() {
 
 function rem_faculty() {
 
+    var rem_faculty_modal = document.getElementById('myModal_rem_faculty');
+    rem_faculty_modal.style.display = "block";
+
+    var cl_span = document.getElementById("rem_faculty_close");
+    cl_span.onclick = function () {
+        rem_faculty_modal.style.display = "none";
+    }
+    $(document).ready(function () {
+        $('#tho').html('');
+        $('#tbo_rem_faculty').html('');
+        $.ajax({
+            type: "POST",
+            url: "find_all_user.php",
+            success: function (response) {
+
+                if (response != null) {
+
+
+                    //console.log(response);
+                    var obj = JSON.parse(response);
+
+
+                    $.each(obj, function (index, row) {
+                        var user_name = row['User_Name'];
+                        var department = row['Department'];
+                        var account_number = row['Account_Number'];
+                        var Bill = row['Bill'];
+                        var user_no = row['User_No'];
+                        console.log(account_number);
+                        $('#tbo_rem_faculty').append('<tr><td>'+user_name+'</td><td>'+department+'</td><td>'+Bill+'</td><td><input class="button" type="submit" onclick ="remove_faculty('+user_no+')" value="Remove Faculty"></td></tr>');
+                    });
+                }
+            }
+        });
+
+    });
+}
+
+function remove_faculty(user_no) {
+    console.log(user_no);
+    $.ajax({
+        type: "POST",
+        url: "remove_faculty.php",
+        data: {user_no: user_no},
+        success: function (response) {
+            if(response.match("success"))
+            {
+                console.log("huu");
+                rem_faculty();
+            }
+        }
+    });
 }

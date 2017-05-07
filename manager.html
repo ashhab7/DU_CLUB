@@ -97,7 +97,7 @@
 
     <title>Manager</title>
 </head>
-<body>
+<body background="DU_CLUB_files/background.jpg">
 
 <div class="dropdown" style="float:right;" id="account_info">
     <button class="dropbtn">Account_Info</button>
@@ -154,14 +154,14 @@
             <h2>Add Item</h2>
         </div>
         <div class="modal-body" id="add_item_modal_body">
-            <p>Fill th fields</p>
+            <h4 align="center">Fill the fields</h4>
             <form id="modal_form_add_item">
                 <center>
                     <h2>Item Name<br></h2>
-                    <input type="text" id="add_item_name" placeholder="e.g Biriyani" required><br>
+                    <input style="width: 40%" type="text" id="add_item_name" placeholder="e.g Biriyani" required><br>
 
                     <h2>Cost<br></h2>
-                    <input type="text" id="add_cost" placeholder="e.g 120" required><br>
+                    <input style="width: 40%" type="text" id="add_cost" placeholder="e.g 120" required><br>
                 </center>
             </form>
         </div>
@@ -178,9 +178,9 @@
 <div id="snackbar" align="center">...asmdnjsandsandjsand...</div>
 
 <div>
-<input type="button" id="pending" onclick="show_pending_orders()" value="Show Pending Orders">
-<input type="button" id="change_menu" onclick="change_menu()" value="Change Today's Menu">
-<input type="button" id="add_item" onclick="add_item()" value="Add New Item">
+<input type="button" class="button" id="pending" onclick="show_pending_orders()" value="Show Pending Orders">
+<input type="button" class="button" id="change_menu" onclick="change_menu()" value="Change Today's Menu">
+<input type="button" class="button" id="add_item" onclick="add_item()" value="Add New Item">
 </div>
 </body>
 </html>

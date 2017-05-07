@@ -99,7 +99,7 @@ div#text {
 	margin-top:10px;
 }
 #table{
-    font-size:15px; 
+    font-size:15px;
     background-color:#E1E1E1;
     width:100%;
 }
@@ -498,3 +498,16 @@ p.header_text_font
     padding: 0; 
 }
 
+
+.button {
+    background-color: #555555;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}

@@ -82,7 +82,7 @@ function load_menu() {
                             var str = "Available"
                         else
                             var str = "Not Available";
-                        $('#tbo').append('<tr><td>'+item_no+'</td><td>'+item_name+'</td><td>'+cost+'</td><td><input style="width: 40%" type="submit" onclick ="find_item('+item_no+')" value="'+str+'" ></td></tr>');
+                        $('#tbo').append('<tr><td>'+item_no+'</td><td>'+item_name+'</td><td>'+cost+'</td><td><input class="button" type="submit" onclick ="find_item('+item_no+')" value="'+str+'" ></td></tr>');
                     });
                 }
             }

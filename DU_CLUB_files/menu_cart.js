@@ -24,7 +24,8 @@ $(document).ready(function() {
                     else if(Status == 2)
                         var str = "Manager";
                     $('#acinfo').append('<tr> <td>'+user_name+'</td></tr><tr><td>'+str+'</td></tr><tr><td><input type="button" value="Change Password" id="change_password"' +
-                        'onclick="change_password()" style="width: 100%"></td></tr><tr><td><input type="button" value="LOG OUT" id="logout"' +
+                        'onclick="change_password()" style="width: 100%"></td></tr><tr><td><input type="button" value="See Orders" id="see_orders"' +
+                        'onclick="see_orders()" style="width: 100%"></td></tr><tr><td><input type="button" value="LOG OUT" id="logout"' +
                         'onclick="log_out()" style="width: 100%"></td></tr>');
                 });
             }
@@ -615,7 +616,7 @@ function remove_cart(re_val)
     if(f==1) ajaxDisplay4.innerHTML =s ;
     else
     {
-        ajaxDisplay4.innerHTML ='<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div><div id="text"><center>To add products to your shopping cart click on "Add to Cart" Button</center></div>';
+        ajaxDisplay4.innerHTML ='<div id="text"><center>To add products to your shopping cart click on "Add to Cart" Button</center></div>';
         arr=[];
         count=0;
         total=0;
@@ -899,5 +900,161 @@ function change_password() {
 }
 
 
+function see_orders(){
+    var order_modal = document.getElementById('myModal_order');
+    order_modal.style.display = "block";
+// Get the button that opens the modal
+
+// Get the <span> element that closes the modal
+    var cl_span = document.getElementById("order_close");
+
+// When the user clicks the button, open the modal
+
+// When the user clicks on <span> (x), close the modal
+    cl_span.onclick = function () {
+        order_modal.style.display = "none";
+    }
 
 
+    $(document).ready(function() {
+        $('#tbo_orders').html('');
+
+        $.ajax({
+            type: "POST",
+            url: "find_loggedin_user.php",
+            success: function (response) {
+
+                if (response != null) {
+
+
+                    //console.log("aise");
+                    var obj = JSON.parse(response);
+
+
+                    $.each(obj, function (index, row) {
+                        account_number = row['Account_Number'];
+                        var Status = row['Status'];
+
+                        $.ajax({
+                            type: "POST",
+                            url: "order_finder.php",
+                            data: {account_number: account_number},
+                            success: function (response) {
+                                if (response != null) {
+                                    var obj = JSON.parse(response);
+
+                                    if(obj.length == 0)
+                                    {
+                                        $('#para').html('No Order');
+                                        $('#table_orders').html('');
+                                    }
+                                    else
+                                    {
+                                        $.each(obj, function (index, row) {
+
+                                            var Account_number = row["Account_Number"];
+                                            var Order_No = row['Order_No'];
+                                            var Date = row['Date'];
+                                            var total = row['Total'];
+                                            //var Bill = row['Bill'];
+                                            var Status = row['Status'];
+                                            if(Status == 1)
+                                                var str = "Served";
+                                            else
+                                                var str = "Pending";
+
+
+                                            $('#tbo_orders').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td><td>'+str+'</td><td><input type="button" value="See Detail Info" onClick="redirect_to_details('+Order_No+')"></td></tr>');
+
+                                        });
+                                    }
+
+
+                                }
+                            }
+                        });
+
+
+                    });
+                }
+            }
+            });
+
+    });
+}
+
+
+function redirect_to_details(order_no) {
+    var order_modal = document.getElementById('myModal_order');
+    order_modal.style.display = "none";
+    $.ajax({
+        type: "POST",
+        url: "set_session_variable.php",
+        data: {order_no: order_no},
+        success: function (response) {
+            if (response != null) {
+                console.log(response);
+                //window.location = "details_pending_info.html";
+            }
+        }
+    });
+
+
+// Get the modal
+    var order_details_modal = document.getElementById('myModal_order_details');
+
+    $(document).ready(function() {
+        $('#tbo2_order').html('');
+        $('#tbo_order').html('');
+        $.ajax({
+            type: "POST",
+            url: "order_details.php",
+            success: function (response) {
+
+                if (response != null) {
+
+
+                    //console.log(response);
+                    var obj = JSON.parse(response);
+
+                    $.each(obj, function (index, row) {
+
+                        var Account_number = row["Account_Number"];
+                        var Order_No = row['Order_No'];
+                        var Date = row['Date'];
+                        var total = row['Total'];
+                        var Bill = row['Bill'];
+
+                        $('#tbo2_order').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td></tr>');
+
+
+
+
+                        var nested_obj = JSON.parse(Bill);
+                        $.each(nested_obj, function (index, row){
+                            var item_no = row['item_no'];
+                            var item_name = row['item_name'];
+                            var item_cost = row['item_cost'];
+                            var item_qty = row['item_qty'];
+                            var amount = row['amount'];
+
+                            $('#tbo_order').append('<tr><td>'+item_no+'</td><td>'+item_name+'</td><td>'+item_cost+'</td><td>'+item_qty+'</td><td>'+amount+'</td></tr>');
+
+                        });
+
+                    });
+                }
+            }
+        });
+    });
+
+    order_details_modal.style.display = "block";
+
+    // Get the <span> element that closes the modal
+    var cl_span = document.getElementById("order_details_nested_close");
+
+    cl_span.onclick = function () {
+        order_details_modal.style.display = "none";
+        order_modal.style.display = "block";
+    }
+}
