@@ -1,0 +1,13 @@
+RewriteEngine on
+RewriteRule ^item_add add_item.php
+RewriteRule ^admin admin.php
+RewriteRule ^bill billing.php
+RewriteRule ^Bill billing_view.html
+RewriteRule ^admin_home admin_home.html
+RewriteRule ^menu_change change_menu.html
+RewriteRule ^alter change_menu.php
+RewriteRule ^menu showmenu.php
+RewriteRule ^manager_home manager.html
+RewriteRule ^pending_orders show_pending_orders.html
+RewriteRule ^details details_pending_info.html
+RewriteRule ^user user.php
