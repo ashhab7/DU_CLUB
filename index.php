@@ -16,7 +16,7 @@ session_start();
             xhttp.onreadystatechange = function(){
 
                 if(this.readyState == 4 && this.status == 200)
-                   console.log(this.responseText);
+                    console.log(this.responseText);
                 if(this.responseText.match("1"))
                 {
                     window.location="user.php";
@@ -31,9 +31,6 @@ session_start();
             email = document.getElementById("Email").value;
             pass = document.getElementById("Pass").value;
 
-            document.cookie = "email="+email;
-            document.cookie = "pass="+pass;
-
             xhttp.open("POST","finder.php",true);
             xhttp.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
             xhttp.send("email="+email+"&pass="+pass);
@@ -47,16 +44,16 @@ session_start();
 <center>
     <body>
 
-        Email:
-        <input type="email" id="Email" required/>
-        Password:
-        <input type="password" id="Pass" required/>
+    Email:
+    <input type="email" id="Email" required>
+    Password:
+    <input type="password" id="Pass" required>
 
-        <br>
-        <br>
-        <br><input type="submit" onclick="finder()" name="button1" value="Log In">
+    <br>
+    <br>
+    <br><input type="submit" onclick="finder()" name="button1" value="Log In">
 
-        <p id = "showMessage" ></p>
+    <p id = "showMessage" ></p>
 
     </body>
 </center>

@@ -2,7 +2,6 @@
  * Created by DELL on 4/29/2017.
  */
 
-
     $(document).ready(function() {
         $('#tho').html('');
 
@@ -48,3 +47,89 @@
             }
         });
     });
+
+function log_out(){
+    $.ajax({
+        type: "POST",
+        url: "clear_session_variable.php",
+        success: function (response) {
+            if (response != null) {
+                console.log(response);
+                if(response.match("1"))
+                    window.location = "./index.php";
+            }
+        }
+    });
+}
+
+
+function change_password() {
+    var pass_modal = document.getElementById('myModal_pass');
+    pass_modal.style.display = "block";
+// Get the button that opens the modal
+    var btn_confirm = document.getElementById("pass_confirm");
+    var btn_cancel = document.getElementById("pass_cancel");
+// Get the <span> element that closes the modal
+    var cl_span = document.getElementById("close");
+
+// When the user clicks the button, open the modal
+    btn_cancel.onclick = function () {
+        document.getElementById("modal_form_pass").reset();
+        pass_modal.style.display = "none";
+    }
+
+// When the user clicks on <span> (x), close the modal
+    cl_span.onclick = function () {
+        document.getElementById("modal_form_pass").reset();
+        pass_modal.style.display = "none";
+    }
+
+    btn_confirm.onclick = function () {
+
+        var old_pass = document.getElementById("old_pass");
+        var new_pass = document.getElementById("new_pass");
+        var con_pass = document.getElementById("con_pass");
+
+        console.log(old_pass.value);
+        console.log(new_pass.value);
+        console.log(con_pass.value);
+
+        $.ajax({
+            type: "POST",
+            url: "change_pass.php",
+            data: {old_pass: old_pass.value,new_pass: new_pass.value,con_pass: con_pass.value},
+            success: function (response) {
+                console.log(response);
+                if(response.match("1"))
+                {
+                    pass_modal.style.display = "none";
+                    var x = document.getElementById("snackbar");
+                    document.getElementById("snackbar").innerHTML = "Password Updated";
+                    x.className = "show";
+
+                    setTimeout(function(){
+                        window.location = "./index.php";
+                    }, 1000);
+
+
+                }
+                else {
+                    var x = document.getElementById("snackbar");
+                    document.getElementById("snackbar").innerHTML = response;
+                    x.className = "show";
+
+                    setTimeout(function () {
+                        x.className = x.className.replace("show", "");
+                    }, 1000);
+                    pass_modal.style.display = "none";
+                    document.getElementById("modal_form_pass").reset();
+                    change_password();
+                }
+
+            }
+        });
+
+    }
+
+
+}

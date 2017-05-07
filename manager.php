@@ -11,8 +11,10 @@ session_start();
 
 include 'database.php';
 
-$email = $_COOKIE["email"];
-$pass = $_COOKIE["pass"];
+$email = $_SESSION["Email"];
+$pass = $_SESSION["pass"];
+
+
 
 $sql ="SELECT * FROM orders WHERE Status = '0'";
 $result = $conn->query($sql);

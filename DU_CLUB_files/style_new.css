@@ -388,38 +388,7 @@ p.header_text_font
 }
 
 
-#khabar_div
-{
-	width:70%;
-	
-	display:inline-block;
-	background-color:rgba(18, 18, 18, 0);
-	
-}
-#khabar_div1
-{
-	width:50%;
-	float:left;
-	text-align:left;
-	margin-top:15px;
-	
-}
-#khabar_div2
-{
-	width:45%;
-	float:left;
-	text-align:right;
-	
-	margin-top:15px;
-	
-}
 
-#emni_div
-{
-	width:70%;
-	height:2px;
-	background-color:#BDBDBD;
-	}
 
 .ino_product_class{
 	

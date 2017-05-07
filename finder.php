@@ -14,7 +14,8 @@ $email = $_POST['email'];
 $pass = $_POST['pass'];
 $emaillerr = $passerr = "";
 
-
+$temp_pass = md5($pass);
+$pass = $temp_pass;
 
 if($conn->connect_error)
 {
@@ -35,6 +36,9 @@ if($conn->connect_error)
     {
         $row = $result->fetch_assoc();
         $_SESSION['Account_Number']=$row['Account_Number'];
+        $_SESSION['Email'] = $row['Email'];
+        $_SESSION['Status'] = $row['Status'];
+        $_SESSION['pass'] = $row['Password'];
         echo  "1";
     }
 

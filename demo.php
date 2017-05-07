@@ -10,8 +10,10 @@ session_start();
 include 'database.php';
 
 $emaillerr = $passerr = "";
-$email = $_COOKIE["email"];
-$pass = $_COOKIE["pass"];
+$email = $_SESSION["Email"];
+$pass = $_SESSION["pass"];
+
+
 echo $email;
 echo $pass;
 

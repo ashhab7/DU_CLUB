@@ -5,15 +5,20 @@ session_start();
  * Created by PhpStorm.
  * User: DELL
  * Date: 3/28/2017
- * Time: 11:01*/
+ * Time: 11:01
+*/
 
 include 'database.php';
 
 $emaillerr = $passerr = "";
-$email = $_COOKIE["email"];
-$pass = $_COOKIE["pass"];
-echo $email. "<br>";
-echo $pass;
+$account_number = $_SESSION['Account_Number'];
+$email = $_SESSION['Email'];
+$pass = $_SESSION['pass'];
+
+
+if(isset($_SESSION['pass']))
+    echo $_SESSION['pass'];
+
 
 if($conn->connect_error)
 {
@@ -22,7 +27,8 @@ if($conn->connect_error)
 }
 $sql = "SELECT * from user WHERE (Email = '$email' AND Password = '$pass') ";
 $result = $conn->query($sql);
-echo  "<br>" . "Log in successful";
+if($result == true)
+    echo  "<br>" . "Log in successful";
 
 while($row = $result->fetch_assoc())
 {
@@ -31,17 +37,14 @@ while($row = $result->fetch_assoc())
     if($status == 0)
         header('Location: showmenu.php');
     else if($status == 1)
-        header('Location: admin.php');
+        header('Location: admin_home.html');
     else if($status == 2)
         header('Location: manager.html');
-    else echo "error";
+    else echo "error 444";
 }
-
-
 
 $conn->close();
 ?>
-
 
 
 </html>

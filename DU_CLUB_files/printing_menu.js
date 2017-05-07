@@ -32,10 +32,7 @@ $(document).ready(function() {
     });
 });
 
-
-load_def();
-
-function log_out(){
+function log_out() {
     $.ajax({
         type: "POST",
         url: "clear_session_variable.php",
@@ -45,85 +42,23 @@ function log_out(){
                 if(response.match("1"))
                     window.location = "./index.php";
             }
+
         }
+
     });
+
 }
 
 
+function load_def() {
 
-
-function load_def(){
 
     $(document).ready(function() {
-        $('#dynamic').html('');
+        $('#tho').html('');
+
         $.ajax({
             type: "POST",
-            url: "manager.php",
-            success: function (response) {
-
-                if (response != null) {
-
-                    console.log(response);
-                    var obj = JSON.parse(response);
-
-                    if(obj.length == 0)
-                    {
-                        $('#para').html('No Order');
-                        $('#table_main').html('');
-                    }
-                    else
-                    {
-                        $.each(obj, function (index, row) {
-
-                            var Account_number = row["Account_Number"];
-                            var Order_No = row['Order_No'];
-                            var Date = row['Date'];
-                            var total = row['Total'];
-                            //var Bill = row['Bill'];
-
-                            $('#tbo1').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td><td><input type="button" value="See Detail Info" onClick="redirect_to_details('+Order_No+')"></td></tr>');
-
-                        });
-                    }
-
-
-                }
-            }
-        });
-    });
-}
-
-
-
-
-
-function redirect_to_details(order_no) {
-
-    $.ajax({
-        type: "POST",
-        url: "set_session_variable.php",
-        data: {order_no: order_no},
-        success: function (response) {
-            if (response != null) {
-                console.log(response);
-                //window.location = "details_pending_info.html";
-            }
-        }
-    });
-
-
-
-
-// Get the modal
-    var modal = document.getElementById('myModal');
-    var modal_body = document.getElementById('modal_body');
-
-    $(document).ready(function() {
-        $('#tbo2').html('');
-        $('#tbo').html('');
-        $.ajax({
-            type: "POST",
-            url: "order_details.php",
+            url: "retrieve_menu.php",
             success: function (response) {
 
                 if (response != null) {
@@ -140,7 +75,7 @@ function redirect_to_details(order_no) {
                         var total = row['Total'];
                         var Bill = row['Bill'];
 
-                        $('#tbo2').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td></tr>');
+                        $('#tbo1').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td></tr>');
 
 
 
@@ -157,96 +92,15 @@ function redirect_to_details(order_no) {
 
                         });
 
+                        //$('#tbo').append('<tr><td>'+item_no+'</td><td>'+item_name+'</td><td>'+cost+'</td><td><input type="submit" onclick = "add_to_cart('+item_no+',\''+item_name+'\','+cost+')" name="button1" value="Add to Cart"></td><td><input type="hidden" name="qty" id="qty" value="qty" </td></tr>');
                     });
                 }
             }
         });
     });
-
-
-
-    modal.style.display = "block";
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-
-    span.onclick = function() {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-
-    var btn_dispatch = document.getElementById("Dispatch");
-
-    btn_dispatch.onclick = function () {
-        $.ajax({
-            type: "POST",
-            url: "dispatch_order.php",
-            data: {order_no: order_no},
-            success: function (response) {
-                if (response != null) {
-                    console.log(response);
-
-                }
-            }
-        });
-        modal.style.display = "none";
-        var x = document.getElementById("snackbar");
-        document.getElementById("snackbar").innerHTML ="Order "+order_no+" has been dispatched ";
-        x.className = "show";
-        setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-
-        reload();
-    }
-
 }
 
-function reload() {
-    $(document).ready(function() {
-        $('#tho').html('');
-        $('#tbo1').html('');
-        $.ajax({
-            type: "POST",
-            url: "manager.php",
-            success: function (response) {
-
-                if (response != null) {
-
-
-                    // console.log(response);
-                    var obj = JSON.parse(response);
-                    if(obj.length == 0)
-                    {
-                        $('#para').html('No Order');
-                        $('#table_main').html('');
-                    }
-                    else
-                    {
-                        $.each(obj, function (index, row) {
-
-                            var Account_number = row["Account_Number"];
-                            var Order_No = row['Order_No'];
-                            var Date = row['Date'];
-                            var total = row['Total'];
-                            //var Bill = row['Bill'];
-
-                            $('#tbo1').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td><td><input type="button" value="See Detail Info" onClick="redirect_to_details('+Order_No+')"></td></tr>');
-
-                        });
-                    }
-
-                }
-            }
-        });
-    });
-}
-
+load_def();
 
 
 function change_password() {
@@ -260,8 +114,8 @@ function change_password() {
 
 // When the user clicks the button, open the modal
     btn_cancel.onclick = function () {
-        pass_modal.style.display = "none";
         document.getElementById("modal_form_pass").reset();
+        pass_modal.style.display = "none";
     }
 
 // When the user clicks on <span> (x), close the modal
@@ -319,4 +173,8 @@ function change_password() {
 
 
 }
+
+
+
+
 

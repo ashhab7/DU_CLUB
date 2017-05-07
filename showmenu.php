@@ -1,15 +1,19 @@
-
 <html>
 <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
     <title>Du Club Menu</title>
-
-
-   <!-- <link href="./mojadar _ be mojadar_files/css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="./mojadar _ be mojadar_files/style.css">
-
-   <link rel="stylesheet" href="./mojadar _ be mojadar_files/bootstrap.css">
-    <link rel="stylesheet" href="./mojadar _ be mojadar_files/bootstrap-responsive.css">
--->
 
     <style>
         /* The Modal (background) */
@@ -88,37 +92,35 @@
 
     <script type="text/javascript" src="./DU_CLUB_files/jquery.js.download"></script>
 
-
-
     <script src="./DU_CLUB_files/bootstrap.js.download"></script>
 
     <link rel="stylesheet" type="text/css" href="./DU_CLUB_files/style_new.css">
- <!--   <link rel="stylesheet" href="./mojadar _ be mojadar_files/styledropdown_new.css">
-
--->
-
-
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-
+    <link rel="stylesheet" type="text/css" href="./DU_CLUB_files/styledropdown_new.css">
 
     <script src="./DU_CLUB_files/menu_cart.js"></script>
 </head>
 <body>
 
+
+<div id="acci_info">
+<div class="dropdown" style="float:right;" id="account_info">
+    <button class="dropbtn">Account_Info</button>
+    <div class="dropdown-content">
+        <table class="table">
+
+            <tbody id="acinfo">
+
+            </tbody>
+        </table>
+    </div>
+</div>
+    <div id="heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>
+</div>
+
+
 <div>
 
-<div id="cart"><div id="heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div><div id="text"><center>To add products to your shopping cart click on "Add to Cart" Button</center></div></div>
+<div id="cart"><div id="text"><center>To add products to your shopping cart click on "Add to Cart" Button</center></div></div>
 
 <div align="center">
 
@@ -162,6 +164,40 @@
     </div>
 
 </div>
+
+
+
+
+    <div id="myModal_pass" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" id="close">&times;</span>
+                <h2>Change Password</h2>
+            </div>
+            <div class="modal-body" id="modal_body">
+                <p>You sure u wantt to change your password???</p>
+                <form id="modal_form_pass">
+                    Current Password:.<br>
+                    <input type="password" id="old_pass" required><br>
+
+                    New Password:<br>
+                    <input type="password" id="new_pass" required><br>
+
+                    Confirm Password:<br>
+                    <input type="password" id="con_pass" required><br>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <h3><input type="submit" id="pass_confirm" value="Confirm">
+                    <input type="submit"  id="pass_cancel" value="Cancel">
+                </h3>
+            </div>
+        </div>
+
+    </div>
 
 
 </div>

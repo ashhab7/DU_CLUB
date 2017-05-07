@@ -9,8 +9,8 @@ session_start();
 
 include 'database.php';
 
-$email = $_COOKIE["email"];
-$pass = $_COOKIE["pass"];
+$email = $_SESSION["Email"];
+$pass = $_SESSION["pass"];
 
 
 

@@ -1,30 +1,87 @@
 $(document).ready(function() {
-    $('#tho').html('');
+    $('#acinfo').html('');
 
     $.ajax({
         type: "POST",
-        url: "menu.php",
+        url: "find_loggedin_user.php",
         success: function (response) {
 
             if (response != null) {
 
 
-                //console.log(response);
+                console.log("aise");
                 var obj = JSON.parse(response);
 
 
                 $.each(obj, function (index, row) {
-                    var item_no = row['No'];
-                    var item_name = row['Item'];
-                    var cost = row['Cost'];
-                    var qty = 'qty'+item_no;
-                    console.log(qty);
-                    $('#tbo').append('<tr><td>'+item_no+'</td><td>'+item_name+'</td><td>'+cost+'</td><td><input type="submit" onclick = "add_to_cart('+item_no+',\''+item_name+'\','+cost+')" name="button1" value="Add to Cart"></td><td><input type="hidden" name="qty" id="qty" value="qty" </td></tr>');
+                    var user_name = row['User_Name'];
+                    var Status = row['Status'];
+                    //console.log(Status);
+                    if(Status == 1)
+                        var str = "Admin";
+                    else if(Status == 0)
+                        var str = "Faculty";
+                    else if(Status == 2)
+                        var str = "Manager";
+                    $('#acinfo').append('<tr> <td>'+user_name+'</td></tr><tr><td>'+str+'</td></tr><tr><td><input type="button" value="Change Password" id="change_password"' +
+                        'onclick="change_password()" style="width: 100%"></td></tr><tr><td><input type="button" value="LOG OUT" id="logout"' +
+                        'onclick="log_out()" style="width: 100%"></td></tr>');
                 });
             }
         }
     });
 });
+
+function log_out() {
+    $.ajax({
+        type: "POST",
+        url: "clear_session_variable.php",
+        success: function (response) {
+            if (response != null) {
+                console.log(response);
+                if(response.match("1"))
+                    window.location = "./index.php";
+            }
+
+        }
+
+    });
+
+}
+
+load_def();
+
+function load_def() {
+    $(document).ready(function() {
+        $('#tho').html('');
+
+        $.ajax({
+            type: "POST",
+            url: "menu.php",
+            success: function (response) {
+
+                if (response != null) {
+
+                    console.log("aise");
+                    //console.log(response);
+                    var obj = JSON.parse(response);
+
+
+                    $.each(obj, function (index, row) {
+                        var item_no = row['No'];
+                        var item_name = row['Item'];
+                        var cost = row['Cost'];
+                        var qty = 'qty'+item_no;
+                        //console.log(qty);
+                        $('#tbo').append('<tr><td>'+item_no+'</td><td>'+item_name+'</td><td>'+cost+'</td><td><input type="submit" onclick = "add_to_cart('+item_no+',\''+item_name+'\','+cost+')" name="button1" value="Add to Cart"></td><td><input type="hidden" name="qty" id="qty" value="qty" </td></tr>');
+                    });
+                }
+            }
+        });
+    });
+}
+
+
 
 if (window.name == "reloader") {
     window.name = "";
@@ -100,7 +157,7 @@ function load() {
 
 
 
- s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
+ //s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
 
 
 
@@ -188,7 +245,7 @@ function but_increase(in_val)
 
 
 
-    s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
+    //s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
 
 
 
@@ -274,7 +331,7 @@ function but_decrease(in_val)
 
 
 
-        s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
+        //s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
 
 
 
@@ -368,7 +425,7 @@ function add_to_cart(item_no,item_name,item_cost)
     var pro_name = item_name;
 
     var x = document.getElementById("snackbar");
-    document.getElementById("snackbar").innerHTML = pro_name+" অর্ডারে সংযুক্ত করা হয়েছে";
+    document.getElementById("snackbar").innerHTML = pro_name+" is added to cart";
     x.className = "show";
     setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
 
@@ -451,7 +508,7 @@ function add_to_cart(item_no,item_name,item_cost)
     //alert(delivery);
 
 
-    s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
+    //s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
 
 
 
@@ -532,7 +589,7 @@ function remove_cart(re_val)
 
 
 
-    s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
+    //s=s+'<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div>';
 
 
 
@@ -602,11 +659,8 @@ function clear_cart()
     count=0;
     total=0;
     var ajaxDisplay4 = document.getElementById('cart');
-    ajaxDisplay4.innerHTML ='<div id = "heading"><h2 align="center" style="color:white; font-size: 20px;">Products on Your Shopping Cart</h2></div><div id="text"><center>To add products to your shopping cart click on "Add to Cart" Button</center></div>';
+    ajaxDisplay4.innerHTML ='<div id="text"><center>To add products to your shopping cart click on "Add to Cart" Button</center></div>';
 
-   /* var queryString = "?data="+arr+"&delivery="+delivery;
-    ajaxRequest.open("GET", "./billing.php"+queryString, true);
-    ajaxRequest.send(null);*/
 
 }
 
@@ -718,19 +772,37 @@ function load_modal() {
                 }
             }
         }
-       /* var cartt = JSON.stringify(cart);
-        ajaxRequest.open("POST", "billing.php", true);
-        ajaxRequest.setRequestHeader('Content-type','application/json; charset=utf-8');
-        ajaxRequest.send("arr="+cartt);
-        //window.location = "billing_view.html";
-        //window.location = "billing.php?arr="+cartt;*/
 
         $.ajax({
             type: "POST",
             url: "billing.php",
             data: {arr: JSON.stringify(cart),total: total_bill},
             success: function (response) {
-                //alert(response);
+
+                $.ajax({
+                    type: "POST",
+                    url: "billing.php",
+                    data: {arr: JSON.stringify(cart),total: total_bill},
+                    success: function (response) {
+                        //alert(response);
+                        //console.log(response);
+                        var obj = JSON.parse(response);
+                        $.each(obj, function (index, row) {
+                        var acc_bill  = row['Bill'];
+                        var up_acc_bill = Number(acc_bill) + Number(total_bill);
+                        $.ajax({
+                            type: "POST",
+                            url: "update_bill.php",
+                            data: {total: up_acc_bill},
+                            success: function (response) {
+                                //alert(response);
+                                console.log(response);
+
+                            }
+                        });
+                    });
+                }
+                });
 
             }
         });
@@ -752,14 +824,79 @@ function load_modal() {
         modal.style.display = "none";
     }
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
 }
 
+
+function change_password() {
+    var pass_modal = document.getElementById('myModal_pass');
+    pass_modal.style.display = "block";
+// Get the button that opens the modal
+    var btn_confirm = document.getElementById("pass_confirm");
+    var btn_cancel = document.getElementById("pass_cancel");
+// Get the <span> element that closes the modal
+    var cl_span = document.getElementById("close");
+
+// When the user clicks the button, open the modal
+    btn_cancel.onclick = function () {
+        document.getElementById("modal_form_pass").reset();
+        pass_modal.style.display = "none";
+    }
+
+// When the user clicks on <span> (x), close the modal
+    cl_span.onclick = function () {
+        document.getElementById("modal_form_pass").reset();
+        pass_modal.style.display = "none";
+    }
+
+    btn_confirm.onclick = function () {
+
+        var old_pass = document.getElementById("old_pass");
+        var new_pass = document.getElementById("new_pass");
+        var con_pass = document.getElementById("con_pass");
+
+        console.log(old_pass.value);
+        console.log(new_pass.value);
+        console.log(con_pass.value);
+
+        $.ajax({
+            type: "POST",
+            url: "change_pass.php",
+            data: {old_pass: old_pass.value,new_pass: new_pass.value,con_pass: con_pass.value},
+            success: function (response) {
+                console.log(response);
+                if(response.match("1"))
+                {
+                    pass_modal.style.display = "none";
+                    var x = document.getElementById("snackbar");
+                    document.getElementById("snackbar").innerHTML = "Password Updated";
+                    x.className = "show";
+
+                    setTimeout(function(){
+                        window.location = "./index.php";
+                    }, 1000);
+
+
+                }
+                else {
+                    var x = document.getElementById("snackbar");
+                    document.getElementById("snackbar").innerHTML = response;
+                    x.className = "show";
+
+                    setTimeout(function () {
+                        x.className = x.className.replace("show", "");
+                    }, 1000);
+                    pass_modal.style.display = "none";
+                    document.getElementById("modal_form_pass").reset();
+                    change_password();
+                }
+
+            }
+        });
+
+    }
+
+
+}
 
 
 

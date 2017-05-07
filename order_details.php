@@ -9,8 +9,10 @@ session_start();
 
 include 'database.php';
 
-$email = $_COOKIE["email"];
-$pass = $_COOKIE["pass"];
+$email = $_SESSION["Email"];
+$pass = $_SESSION["pass"];
+
+
 
 $order_no = $_SESSION["order_no"];
 $sql ="SELECT * from orders WHERE (Order_No = '$order_no') ";
