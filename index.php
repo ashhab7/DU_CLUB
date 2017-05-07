@@ -14,7 +14,7 @@ session_start();
 
             xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function(){
-
+				console.log("aise");
                 if(this.readyState == 4 && this.status == 200)
                     console.log(this.responseText);
                 if(this.responseText.match("1"))
