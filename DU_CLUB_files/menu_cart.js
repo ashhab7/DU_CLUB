@@ -785,7 +785,7 @@ function load_modal() {
                     url: "demo.php",
                     //data: {arr: JSON.stringify(cart),total: total_bill},
                     success: function (response) {
-                        alert(response);
+                        //alert(response);
                         //console.log(response);
                         var obj = JSON.parse(response);
                         $.each(obj, function (index, row) {
@@ -796,7 +796,7 @@ function load_modal() {
                             url: "update_bill.php",
                             data: {total: up_acc_bill},
                             success: function (response) {
-                                alert(response);
+                                //alert(response);
                                 console.log(response);
 
                             }
