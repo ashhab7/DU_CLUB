@@ -99,7 +99,7 @@
 
     <script src="./DU_CLUB_files/menu_cart.js"></script>
 </head>
-<body>
+<body background="./DU_CLUB_files/background.jpg">
 
 
 <div id="acci_info">
@@ -119,13 +119,15 @@
     </center>
 </div>
 
+
+
 <div>
 
 <div id="cart"><div id="text"><center>To add products to your shopping cart click on "Add to Cart" Button</center></div></div>
 
 <div align="center">
 
-    <table class="table">
+    <table class="table" style="width: 100%">
         <thead>
             <tr>
                 <th>Item Number</th>

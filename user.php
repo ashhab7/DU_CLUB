@@ -35,11 +35,11 @@ while($row = $result->fetch_assoc())
     echo "<br>" . "<b>User name: </b>" . $row["User_Name"] . " <b>Email Id: </b>" . $row["Email"]." <b>Password: </b>" . $row["Password"]." <b>Account Number: </b>" . $row["Account_Number"]." <b>Account Status: </b>" . $row["Status"];
     $status = $row["Status"];
     if($status == 0)
-        header('Location: showmenu.php');
+        header('Location: show_menu');
     else if($status == 1)
-        header('Location: admin_home.html');
+        header('Location: admin_home');
     else if($status == 2)
-        header('Location: manager.html');
+        header('Location: manager_home');
     else echo "error 444";
 }
 

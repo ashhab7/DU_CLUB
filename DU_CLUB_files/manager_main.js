@@ -53,12 +53,12 @@ function log_out() {
 
 function show_pending_orders() {
     console.log("aise");
-    window.location = "show_pending_orders.html";
+    window.location = "pending_orders";
     //window.location="manager.php"
 }
 
 function change_menu() {
-    window.location = "change_menu.html";
+    window.location = "menu_change";
 }
 
 function add_item(){

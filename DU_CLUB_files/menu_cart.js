@@ -74,7 +74,7 @@ function load_def() {
                         var cost = row['Cost'];
                         var qty = 'qty'+item_no;
                         //console.log(qty);
-                        $('#tbo').append('<tr><td>'+item_no+'</td><td>'+item_name+'</td><td>'+cost+'</td><td><input type="submit" onclick = "add_to_cart('+item_no+',\''+item_name+'\','+cost+')" name="button1" value="Add to Cart"></td><td><input type="hidden" name="qty" id="qty" value="qty" </td></tr>');
+                        $('#tbo').append('<tr><td>'+item_no+'</td><td>'+item_name+'</td><td>'+cost+'</td><td><input class="button" type="submit" onclick = "add_to_cart('+item_no+',\''+item_name+'\','+cost+')" name="button1" value="Add to Cart"></td><td><input type="hidden" name="qty" id="qty" value="qty" </td></tr>');
                     });
                 }
             }
@@ -813,7 +813,7 @@ function load_modal() {
         x.className = "show";
 
         setTimeout(function(){
-            window.location = "billing_view.html"
+            window.location = "bill_view";
         }, 1000);
 
         //window.location = "billing_view.html";
