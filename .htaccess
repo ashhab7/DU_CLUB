@@ -3,4 +3,5 @@ RewriteRule ^bill_view billing_view.html
 RewriteRule ^admin_home admin_home.html
 RewriteRule ^show_menu showmenu.php
 RewriteRule ^manager_home manager.html
+RewriteRule ^alter change_menu.html
 RewriteRule ^pending_orders show_pending_orders.html

@@ -58,7 +58,7 @@ function show_pending_orders() {
 }
 
 function change_menu() {
-    window.location = "change_menu.html";
+    window.location = "alter";
 }
 
 function add_item(){
