@@ -81,7 +81,7 @@ function load_def(){
                             var total = row['Total'];
                             //var Bill = row['Bill'];
 
-                            $('#tbo1').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td><td><input type="button" style="width: 100%" class="button" value="See Detail Info" onClick="redirect_to_details('+Order_No+')"></td></tr>');
+                            $('#tbo1').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td><td><input type="submit" style="width: 100%" class="button" value="See Detail Info" onClick="redirect_to_details('+Order_No+')"></td></tr>');
 
                         });
                     }
@@ -236,7 +236,7 @@ function reload() {
                             var total = row['Total'];
                             //var Bill = row['Bill'];
 
-                            $('#tbo1').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td><td><input type="button" value="See Detail Info" onClick="redirect_to_details('+Order_No+')"></td></tr>');
+                            $('#tbo1').append('<tr><td>'+Account_number+'</td><td>'+Order_No+'</td><td>'+Date+'</td><td>'+total+'</td><td><input type="submit" class="button" value="See Detail Info" onClick="redirect_to_details('+Order_No+')"></td></tr>');
 
                         });
                     }

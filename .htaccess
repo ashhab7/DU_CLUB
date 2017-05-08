@@ -1,7 +1,6 @@
 RewriteEngine on
 RewriteRule ^bill_view billing_view.html
 RewriteRule ^admin_home admin_home.html
-RewriteRule ^change_menu change_menu.html
 RewriteRule ^show_menu showmenu.php
 RewriteRule ^manager_home manager.html
 RewriteRule ^pending_orders show_pending_orders.html

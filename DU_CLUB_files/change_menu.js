@@ -9,7 +9,7 @@ $(document).ready(function() {
             if (response != null) {
 
 
-                //console.log(response);
+                console.log(response);
                 var obj = JSON.parse(response);
 
 
@@ -68,7 +68,7 @@ function load_menu() {
                 if (response != null) {
 
 
-                    //console.log(response);
+                    console.log(response);
                     var obj = JSON.parse(response);
 
 
