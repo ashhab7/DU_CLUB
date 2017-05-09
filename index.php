@@ -73,6 +73,12 @@ session_start();
     <br><input style="width: 30%" type="submit" class="button" onclick="finder()" name="button1" value="Log In">
 
     <p id = "showMessage" ></p>
+    <h4>User Email : m.ashhab614@gmail.com</h4>
+    <h4>User Pass : 123456</h4>
+    <h4>Manager Email : manager.manager@gmail.com</h4>
+    <h4>Manager Pass : manager</h4>
+    <h4>Admin Email : admin.admin@gmail.com</h4>
+    <h4>Admin Pass : admin</h4>
 
     </body>
 </center>
